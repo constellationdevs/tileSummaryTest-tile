@@ -1,4 +1,7 @@
 // ====FOR LOCAL DEVELOPMENT ONLY, DO NOT UPLOAD THIS FILE====
+
+// toggle this variable to true to call a connector project locally (requires proper config in mocks/mock_connectorConfig.json)
+// toggle to false to use mock file (required to fit naming convention mocks/[connectorName]_[connectorVersion]_[connectorMethod].json)
 const useLocalConnector = false;
 
 container.tile.data.getOpenData = function (callbackFunc) {
@@ -6,17 +9,6 @@ container.tile.data.getOpenData = function (callbackFunc) {
     success: false,
     data: {},
   };
-  callbackFunc(response);
-};
-container.connectors.sendRequest = function (
-  connname,
-  connversion,
-  connmethod,
-  params,
-  callbackFunc
-) {
-  const response = {};
-  
   callbackFunc(response);
 };
 

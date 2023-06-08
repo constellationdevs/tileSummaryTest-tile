@@ -1,7 +1,4 @@
-import ContainerResponse from "../CDP/ContainerResponse.model";
-import TileModel from "./Tile.model";
 import TileColorModel from "./TileColor.model";
-import TilePreviewEnum from "./TilePreview.enum";
 import TileSummaryListItemModel from "./TileSummaryListItem.model";
 
 export default class TileSummaryModel {

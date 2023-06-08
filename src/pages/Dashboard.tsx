@@ -19,6 +19,7 @@ import MemberTileModel from "../models/tile/MemberTile.model";
 import ContainerTileModel from "../models/CDP/ContainerTile.model";
 import ErrorModal, { ErrorModalModel } from "./CDP/ErrorModal";
 import IBaseStateModel from "../models/CDP/baseStates/IBaseState.model";
+import he from "he";
 
 export interface IDashboardProps extends IBasePropsModel {
   componentModel: LandingPageModel;
@@ -83,7 +84,7 @@ class Dashboard extends Component<IDashboardProps, IDashboardState> {
   }
 
   getTileSummary = (): Promise<TileSummaryModel | ErrorModalModel> => {
-    return new Promise<TileSummaryModel | ErrorModalModel>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       console.log(this.state.ConnectorInfoModel)
       container.connectors.sendRequest(
         this.state.ConnectorInfoModel.connectorName,
@@ -91,14 +92,15 @@ class Dashboard extends Component<IDashboardProps, IDashboardState> {
         "tileSummary",
         {},
         (resp: ContainerResponseModel) => {
-          console.log(resp)
-          if (resp.success) {
-            const ts: TileSummaryModel = resp.data;
+          const results = JSON.parse(he.decode(JSON.stringify(resp)));
+          console.log(results)
+          if (results.success) {
+            const ts: TileSummaryModel = results.data;
             resolve(ts);
           } else {
             
-            resp.message = "Something went wrong with the connector request."
-            resp.data = {
+            results.message = "Something went wrong with the connector request."
+            results.data = {
               data: resp.data, 
               request: {
                 connectorName: this.state.ConnectorInfoModel.connectorName,
@@ -131,7 +133,7 @@ class Dashboard extends Component<IDashboardProps, IDashboardState> {
         console.log(resp);
 
         // clear form
-        this.setState({ConnectorInfoModel: new ConnectorInfoModel()})
+        // this.setState({ConnectorInfoModel: new ConnectorInfoModel()})
         // create list of tile previews and save to some state variable
         const tileList = resp.PreviewTypes.map((type: string) => {
           console.log(type);
@@ -164,7 +166,9 @@ class Dashboard extends Component<IDashboardProps, IDashboardState> {
       },
       (error: ErrorModalModel) => {
         console.log(error);
+        container.tile.ui.hideSpinner();
         this.setState({
+          showPreviews: false,
           ErrorModalData: error
         });
         showModal("ErrorModal")

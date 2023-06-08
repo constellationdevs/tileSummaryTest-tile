@@ -5,6 +5,9 @@
 @dangerColor: @red;
 @backgroundGrey: @lightGrey;
 @maxListWidth: 600px;
+@borderRadius: 4px;
+@primaryTileColor: @primaryThemeColor;
+@focusColor: @blue;
 
 .app-loader {
   margin: auto;
@@ -78,62 +81,6 @@ ons-toast {
   &.danger {
     .toast {
       background-color: @dangerColor;
-    }
-  }
-}
-
-#commCenter {
-  #CommHeroContainer {
-    background-color: #232323;
-
-    #imgProfile {
-      border-radius: 50%;
-      height: 22vw;
-      max-height: 391px;
-    }
-
-    .body {
-      div {
-        text-align: center;
-        padding: 20px 0;
-      }
-    }
-
-    .primaryBtn {
-      background-color: grey;
-    }
-
-    &.loading {
-      .round-img {
-        border-radius: 50%;
-        height: 74px !important;
-        width: 74px !important;
-        margin: auto;
-        .loaderPlaceholder();
-      }
-
-      .round-img-small {
-        border-radius: 50%;
-        height: 25px !important;
-        width: 25px !important;
-        float: right;
-        .loaderPlaceholder();
-      }
-
-      ons-button {
-        .loaderPlaceholder();
-      }
-
-      b {
-        height: 15px;
-        color: transparent;
-        .loaderPlaceholder();
-      }
-
-      .subTitle {
-        height: 30px;
-        .loaderPlaceholder();
-      }
     }
   }
 }
