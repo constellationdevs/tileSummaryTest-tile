@@ -89,7 +89,6 @@ ons-toast {
   .cdp_hero {
     flex-shrink: 0;
     transition: height 1s ease-in-out;
-    height: 436px;
     background-color: @primaryTileColor;
 
     header {
@@ -132,7 +131,6 @@ ons-toast {
   .cdp_columns {
     display: flex;
     flex-direction: row;
-    max-height: 50vh;
     .cdp_column {
       justify-content: space-between;
       max-width: 40vw;
@@ -149,9 +147,10 @@ ons-toast {
     }
   }
   .cdp_list_container {
-    overflow: unset !important;
+    overflow: scroll;
     position: relative;
     width: unset;
+    padding-bottom: 50px;
 
     .list-header.stickyFixed {
       top: 130px;

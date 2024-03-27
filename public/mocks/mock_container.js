@@ -2,7 +2,7 @@
 
 // toggle this variable to true to call a connector project locally (requires proper config in mocks/mock_connectorConfig.json)
 // toggle to false to use mock file (required to fit naming convention mocks/[connectorName]_[connectorVersion]_[connectorMethod].json)
-const useLocalConnector = false;
+const useLocalConnector = true;
 
 container.tile.data.getOpenData = function (callbackFunc) {
   const response = {

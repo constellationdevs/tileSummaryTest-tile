@@ -91,6 +91,7 @@ export default class TileComponent extends Component<ITileProp, ITileState> {
   getTileSummary = (): Promise<TileSummaryModel> => {
     return new Promise<any>((resolve, reject) => {
       container.connectors.sendRequest(this.props.data.connectorName, this.props.data.connectorVersion, "tileSummary", {}, (resp: ContainerResponseModel) => {
+        console.log(resp)
         if (resp.success) {
           const ts: TileSummaryModel = resp.data;
           resolve(ts);
