@@ -1,0 +1,11 @@
+{
+  "openData": {
+    "actionType": 3,
+    "component": "Dashboard",
+    "pageName": "dashboard",
+    "openData": {}
+  },
+  "config": {
+    "loglevel": "INFO"
+  }
+}

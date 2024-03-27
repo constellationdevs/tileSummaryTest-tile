@@ -1,0 +1,719 @@
+@import "variables";
+
+@positiveColor: @green;
+@disabledColor: @darkGrey;
+@dangerColor: @red;
+@backgroundGrey: @lightGrey;
+@maxListWidth: 600px;
+@borderRadius: 4px;
+@primaryTileColor: @primaryThemeColor;
+@focusColor: @blue;
+
+.app-loader {
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.boxShadow {
+  box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
+}
+
+// hide all scrollbars on Chrome, Safari, Opera
+*::-webkit-scrollbar {
+  display: none;
+}
+
+// hide all scrollbars on IE, Edge, Firefox
+* {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+*:focus {
+  outline: 0 none transparent !important;
+}
+
+.cdpPulseLoader {
+  background: @mediumGrey;
+  animation: cdp_opactiy-pulse 1.75s infinite alternate;
+  border-radius: 4px;
+}
+
+.loaderPlaceholder() {
+  .cdpPulseLoader();
+}
+
+.loading {
+  .loaderPlaceholder();
+}
+
+ons-toast {
+  .toast {
+    background-color: @red;
+    opacity: 0.95;
+
+    .toast__message {
+      opacity: 1 !important;
+
+      .toastMsg {
+        height: unset;
+      }
+    }
+
+    .toast__button {
+      opacity: 1 !important;
+      outline: none !important;
+    }
+  }
+
+  &.success {
+    .toast {
+      background-color: @positiveColor;
+    }
+  }
+
+  &.danger {
+    .toast {
+      background-color: @dangerColor;
+    }
+  }
+}
+
+#dashboard {
+  .cdp_hero {
+    flex-shrink: 0;
+    transition: height 1s ease-in-out;
+    height: 436px;
+    background-color: @primaryTileColor;
+
+    header {
+      background-color: @primaryTileColor;
+    }
+  }
+
+  footer {
+    margin-top: 18px;
+  }
+
+  .cdp_page_container {
+    overflow: scroll !important;
+    position: relative;
+  }
+
+  .cdp_page_container.shrink {
+    .cdp_hero {
+      height: 136px;
+
+      header {
+        height: 136px;
+      }
+
+      section {
+        animation: cdp-hero-section 1.5s forwards;
+      }
+
+      footer {
+        margin: 0;
+        position: fixed;
+        top: 85px;
+        right: 20px;
+        left: 20px;
+        z-index: 99;
+        width: auto;
+      }
+    }
+  }
+  .cdp_columns {
+    display: flex;
+    flex-direction: row;
+    max-height: 50vh;
+    .cdp_column {
+      justify-content: space-between;
+      max-width: 40vw;
+      overflow: scroll;
+
+      pre {
+        margin: 10px;
+        padding: 10px;
+        word-wrap: break-word;
+        text-align: left;
+        overflow: scroll;
+        flex: 1;
+      }
+    }
+  }
+  .cdp_list_container {
+    overflow: unset !important;
+    position: relative;
+    width: unset;
+
+    .list-header.stickyFixed {
+      top: 130px;
+    }
+  }
+}
+
+.cdp_page_container {
+  background-color: @backgroundGrey;
+
+  .cdp_hero {
+    position: relative;
+    z-index: 10;
+
+    header {
+      z-index: 99;
+      position: fixed;
+      padding: 20px 20px 0 20px;
+      top: 0;
+      right: 0;
+      left: 0;
+    }
+
+    section {
+      margin-top: 56px;
+    }
+  }
+
+  .cdp_list_container {
+    width: @maxListWidth;
+    margin: 0 auto;
+
+    ons-list-item {
+      overflow-x: scroll;
+    }
+
+    .stickySpan {
+      display: none;
+
+      &.first {
+        display: inline;
+      }
+    }
+
+    .list-header {
+      .stickySpan {
+        display: none;
+
+        &.first {
+          display: inline;
+        }
+      }
+
+      &.stickyFixed {
+        position: fixed;
+        width: 100%;
+        max-width: @maxListWidth;
+        box-sizing: border-box;
+        z-index: 2;
+
+        &.stickyAbsolute {
+          position: absolute;
+        }
+
+        .stickySpan {
+          display: inline;
+        }
+      }
+    }
+
+    .loading {
+      &.round-img-small {
+        width: 30px;
+        border-radius: 50%;
+      }
+
+      &.list-item__title,
+      &.list-item__subtitle {
+        height: 20px;
+        width: 150px;
+      }
+
+      &.list-item__title {
+        margin-bottom: 10px;
+      }
+
+      &.callout {
+        height: 20px;
+        width: 50px;
+      }
+    }
+  }
+}
+
+.bottom-bar {
+  box-shadow: 4px -4px 4px 0px rgba(0, 0, 0, 0.1);
+  position: fixed;
+}
+
+ons-list {
+  width: 40vw;
+  ons-list-item {
+    .list-item {
+      &[tappable],
+      &[role="button"],
+      &[role="link"] {
+        border-bottom: 0 transparent none !important;
+        margin-bottom: 0;
+      }
+    }
+    .list-item__center {
+      width: 100%;
+      ons-input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+button:disabled,
+button[disabled],
+.button:disabled,
+.button[disabled],
+ons-button:disabled {
+  color: fade(@lightBlack, 99%) !important;
+  background-color: fade(@darkGrey, 50%) !important;
+  opacity: unset !important;
+}
+
+button,
+.button,
+[role="button"],
+a[role="link"] {
+  &:focus {
+    box-shadow: 0 0 0 2px @focusColor;
+    outline: none;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.list-item[tappable],
+.list-item[role="button"],
+.list-item[role="link"],
+.select-input {
+  &:focus {
+    border: 2px solid @focusColor !important;
+    border-radius: 8px;
+    outline: none;
+    margin: 0;
+
+    div {
+      border-bottom: 1px solid transparent;
+    }
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+input:focus {
+  border-bottom: 2px solid @focusColor;
+  border-radius: 0;
+  caret-color: @focusColor;
+}
+
+// Loading Animation
+@keyframes cdp_opactiy-pulse {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+
+#errorModalContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  bottom: 20px;
+  background-color: @white;
+  color: @lightBlack;
+  padding: 20px;
+  border-radius: @borderRadius;
+  display: flex;
+  flex-direction: column;
+
+  &>div {
+    padding: 10px 0;
+    flex: 0;
+  }
+
+  pre {
+    margin: 10px;
+    padding: 10px;
+    word-wrap: break-word;
+    text-align: left;
+    overflow: scroll;
+    flex: 1;
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: inherit;
+    ons-icon {
+      font-size: 30px;
+      color: @lightBlack;
+    }
+  }
+}
+
+#errorPageContianer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  #errorMsg {
+    margin-top: 50%;
+    padding: 18px;
+    text-align: center;
+
+    span {
+      font-size: 21px;
+      font-weight: 300;
+      color: @primaryThemeColor;
+    }
+
+    
+  }
+}
+
+@media only screen and (max-width: @maxListWidth) {
+  #secondaryContainer,
+  .cdp_list_container {
+    margin: 0 auto;
+    width: 100% !important;
+  }
+}
+
+.cdpTile {
+  position: relative;
+  overflow: hidden;
+  width: 320px;
+  background-color: transparent;
+  margin: auto;
+
+  .loader {
+    .DismissItemContainer,
+    .HideContainer,
+    .ActionContainer {
+      display: none;
+    }
+
+    .card {
+      .loaderPlaceholder();
+      height: 128px;
+
+      .cardHeader {
+        background-image: none !important;
+      }
+
+      h1 {
+        color: @fontColor !important;
+      }
+    }
+  }
+
+  .cdpCard {
+    margin: 10px;
+    overflow: hidden;
+    position: relative;
+    border-radius: @borderRadius;
+    .boxShadow();
+    box-sizing: border-box;
+    .cardHeader {
+      padding: 15px;
+      position: relative;
+
+      .cardTitle {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .imageContainer {
+          flex-basis: 35px;
+          order: 1;
+          flex-grow: 0;
+          flex-shrink: 0;
+
+          img {
+            width: 25px;
+            height: 25px;
+          }
+        }
+
+        .titleContainer {
+          flex-grow: 1;
+          flex-shrink: 0;
+          order: 2;
+
+          span {
+            font-size: 14px;
+            line-height: 18px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 215px;
+            display: inline-block;
+            white-space: nowrap;
+            vertical-align: text-top;
+          }
+        }
+
+        .openTile {
+          flex-basis: 20px;
+          order: 3;
+          flex-grow: 0;
+          flex-shrink: 0;
+          height: 26px;
+
+          i {
+            display: inline-block;
+            font-size: 24px;
+          }
+        }
+      }
+
+      .headerContainer {
+        padding-top: 10px;
+
+        .detail {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding-bottom: 5px;
+
+          .detailIcon {
+            flex-basis: 30px;
+            flex-grow: 0;
+            flex-shrink: 0;
+
+            img {
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }
+      }
+
+      h1, h2, h3, h4 {
+        line-height: 22px;
+        margin: 0;
+      }
+
+      h2 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+        padding-bottom: 5px;
+      }
+
+      h3 {
+        font-size: 15px;
+        line-height: 18px;
+      }
+
+      h4 {
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
+
+    // Card Body Defaults
+    .cardBody {
+      .cardList {
+        background-color: @white;
+        color: @fontColor;
+        border-top: 1px solid @lightGrey;
+        padding: 5px;
+
+        .cardListItem {
+          display: flex;
+          flex-direction: row;
+          align-content: center;
+          border-bottom: 1px solid @lightGrey;
+          align-items: center;
+
+          .listImage {
+            flex-basis: 30px;
+            flex-grow: 0;
+            flex-shrink: 0;
+
+            img {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          .listMain {
+            flex-grow: 2;
+            flex-shrink: 1;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .listItem-title {
+            flex-grow: 1;
+            font-weight: 500;
+            line-height: 20px;
+            -webkit-flex-basis: 100%;
+            flex-basis: 100%;
+          }
+
+          .listItem-subtitle {
+            flex-grow: 1;
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 20px;
+            -webkit-flex-basis: 100%;
+            flex-basis: 100%;
+            -webkit-align-self: flex-start;
+            align-self: flex-start;
+          }
+
+          .listCallouts {
+            flex-grow: 1;
+            flex-shrink: 1;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: right;
+            align-content: end;
+
+            .callout {
+              flex-basis: 100%;
+              flex-shrink: 0;
+              flex-grow: 0;
+              text-align: right;
+              height: 20px;
+              line-height: 20px;
+
+              .calloutIcon {
+                flex-basis: 20px;
+                flex-grow: 0;
+                flex-shrink: 0;
+              }
+
+              .calloutImg {
+                width: 15px;
+                height: 15px;
+              }
+
+              .calloutText {
+                flex-grow: 1;
+                font-weight: 500;
+                line-height: 20px;
+                text-align: right;
+                padding-left: 3px;
+              }
+            }
+          }
+        }
+
+        .cardListItem:last-of-type {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  &.tileTemplate2 {
+    .card {
+      min-height: 90px;
+
+      .cardHeader {
+        display: block;
+      }
+
+      .cardBody {
+        padding: 0;
+        height: 0;
+      }
+    }
+  }
+
+  // Deprecated idea but keeping css and component around
+  &.smallTemplate2Card {
+    .imgCol {
+      padding: 9px;
+      width: 84px;
+
+      img {
+        width: 66px;
+      }
+    }
+
+    .titleCol {
+      flex-grow: 3;
+      padding: 9px;
+      line-height: 15px;
+    }
+
+    .backgroundImage {
+      position: absolute;
+      right: 0;
+      height: 84px;
+      width: 50%;
+      opacity: 0.05;
+      background-size: cover !important;
+    }
+  }
+
+  // Deprecated idea but keeping css and component around
+  &.smallTemplate1Card {
+    width: 167px;
+
+    .card {
+      height: 150px;
+
+      .cardHeader {
+        text-align: center;
+        padding: 0;
+        height: 75%;
+        position: relative;
+        overflow: hidden;
+
+        img {
+          width: 75px;
+          height: 75px;
+        }
+      }
+
+      .cardBody {
+        background-color: inherit;
+        height: 25%;
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px 16px;
+
+        h1 {
+          font-weight: bold;
+          margin: 0;
+          font-size: 1em;
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: unset;
+        }
+      }
+    }
+  }
+}

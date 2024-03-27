@@ -1,0 +1,9 @@
+[
+  {
+    "ConnectorName": "TileSummaryConnector",
+    "ConnectorMethod": "tileSummary",
+    "ConnectorVersion": "1.0",
+    "RequestMethod": "POST",
+    "ConnectorURL": "http://localhost:8080/externalConnector/TileSummaryConnector/1.0/tileSummary"
+  }
+]
