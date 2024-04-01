@@ -22,17 +22,15 @@ export default class TilePreviewTemplate3 extends Component<ITilePropModel, any>
   };
 
   renderDetail1 = () => {
-    if (this.props.data.Details1 !== "" || this.props.data.Details1Icon !== "") {
+    if (this.props.data.Details1 || this.props.data.Details1Icon) {
       return (
         <div className="detail">
-          {this.props.data.Details1Icon !== "" ? (
+          {this.props.data.Details1Icon && (
             <div className="detailIcon">
               <img src={this.props.data.Details1Icon} />
             </div>
-          ) : (
-            <></>
           )}
-          {this.props.data.Details1 !== "" ? <h3>{this.props.data.Details1}</h3> : <></>}
+          {this.props.data.Details1 && <h3>{this.props.data.Details1}</h3>}
         </div>
       );
     } else {
@@ -41,17 +39,15 @@ export default class TilePreviewTemplate3 extends Component<ITilePropModel, any>
   };
 
   renderDetail2 = () => {
-    if (this.props.data.Details2 !== "" || this.props.data.Details2Icon !== "") {
+    if (this.props.data.Details2 || this.props.data.Details2Icon) {
       return (
         <div className="detail">
-          {this.props.data.Details2Icon !== "" ? (
+          {this.props.data.Details2Icon && (
             <div className="detailIcon">
               <img src={this.props.data.Details2Icon} />
             </div>
-          ) : (
-            <></>
           )}
-          {this.props.data.Details2 !== "" ? <h4>{this.props.data.Details2}</h4> : <></>}
+          {this.props.data.Details2 && <h4>{this.props.data.Details2}</h4>}
         </div>
       );
     } else {
@@ -124,30 +120,24 @@ export default class TilePreviewTemplate3 extends Component<ITilePropModel, any>
   };
 
   renderRow = (row: TileSummaryListItemModel, idx: number) => {
-    const img1 =
-      row.Image1 !== "" ? (
-        <div className="listImage">
-          <img src={row.Image1} />
-        </div>
-      ) : (
-        <></>
-      );
-
-    const main = (
-      <div className="listMain">
-        {row.Title !== "" ? <span className="listItem-title">{row.Title}</span> : <></>}
-        {row.Detail !== "" ? <span className="listItem-subtitle">{row.Detail}</span> : <></>}
+    const img1 = row.Image1 && (
+      <div className="listImage">
+        <img src={row.Image1} />
       </div>
     );
 
-    const img2 =
-      row.Image2 !== "" ? (
-        <div className="listImage">
-          <img src={row.Image2} />
-        </div>
-      ) : (
-        <></>
-      );
+    const main = (
+      <div className="listMain">
+        {row.Title && <span className="listItem-title">{row.Title}</span>}
+        {row.Detail && <span className="listItem-subtitle">{row.Detail}</span>}
+      </div>
+    );
+
+    const img2 = row.Image2 && (
+      <div className="listImage">
+        <img src={row.Image2} />
+      </div>
+    );
 
 
     return (

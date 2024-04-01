@@ -22,23 +22,39 @@ export default class TilePreviewTemplate2 extends Component<ITilePropModel, any>
 
   
   renderDetail1 = () => {
-    if (this.props.data.Details1 !== "" || this.props.data.Details1Icon !== ""){
-      return <div className="detail">
-      {this.props.data.Details1Icon !== "" ? <div className="detailIcon"><img src={this.props.data.Details1Icon} /></div> : <></>}
-        {this.props.data.Details1 !== "" ? <h3>{this.props.data.Details1}</h3> : <></>}
-      </div>;
-    } else{
+    if (this.props.data.Details1 || this.props.data.Details1Icon){
+      return (
+        <div className="detail">
+          { this.props.data.Details1Icon && (
+            <div className="detailIcon">
+              <img src={this.props.data.Details1Icon} />
+            </div>
+          )}
+          { this.props.data.Details1 &&
+            <h3>{this.props.data.Details1}</h3>
+          }
+        </div>
+      )
+    } else {
       return <></>;
     }
   }
   
   renderDetail2 = () => {
-    if (this.props.data.Details2 !== "" || this.props.data.Details2Icon !== ""){
-      return <div className="detail">
-        {this.props.data.Details2Icon !== "" ? <div className="detailIcon"><img src={this.props.data.Details2Icon} /></div> : <></>}
-        {this.props.data.Details2 !== "" ? <h4>{this.props.data.Details2}</h4> : <></>}
-      </div>;
-    } else{
+    if (this.props.data.Details2 || this.props.data.Details2Icon ){
+      return (
+        <div className="detail">
+          {this.props.data.Details2Icon && (
+            <div className="detailIcon">
+              <img src={this.props.data.Details2Icon} />
+            </div>
+          )}
+          {this.props.data.Details2 && (
+            <h4>{this.props.data.Details2}</h4>
+          )}
+        </div>
+      )
+    } else {
       return <></>;
     }
   }
