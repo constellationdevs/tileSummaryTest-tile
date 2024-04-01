@@ -135,7 +135,7 @@ class Dashboard extends Component<IDashboardProps, IDashboardState> {
         // clear form
         // this.setState({ConnectorInfoModel: new ConnectorInfoModel()})
         // create list of tile previews and save to some state variable
-        const tileList = resp.PreviewTypes.map((type: string) => {
+        const tileList = resp?.PreviewTypes.map((type: string) => {
           console.log(type);
           const memberTile: MemberTileModel = tile.mockMemberTile;
           const containerTile: ContainerTileModel = tile.mockContainerTile;
@@ -163,16 +163,18 @@ class Dashboard extends Component<IDashboardProps, IDashboardState> {
           TilePreviewList: { data: tileList, resp: resp },
           loadingPreviews: false,
         });
-      },
-      (error: ErrorModalModel) => {
+      })
+    .catch((error: ErrorModalModel) => {
         console.log(error);
-        container.tile.ui.hideSpinner();
         this.setState({
           showPreviews: false,
           ErrorModalData: error
         });
         showModal("ErrorModal")
-      });
+    })
+    .finally(() => {
+      container.tile.ui.hideSpinner();
+    })
   };
 }
 
